@@ -37,6 +37,13 @@ es:
         website: Website
         post_comment: Enviar comentario
         comment: Comentario        
+      voting:
+        voting: Votos
+        for: A favor
+        against: En contra
+        already_voted: Ya has votado esta entrada
+        added: Voto añadido!
+        no_votes_yet: Todavía no hay votos
       rating:
         rating: Valoración        
         added: Valoración añadida
@@ -60,6 +67,9 @@ es:
         title: Abusos denunciados
         confirm: Confirmar
         confirmed: Abuso confirmado. Contacte al usuario y solicítele que elimine dicho contenido        
+        confirmed_and_destroyed: Abuso confirmado. El contenido ha sido eliminado
+        error_confirming: Ha ocurrido un error al confirmar el abuso.
+        confirm_removal: Esta acción eliminará el contenido reportado como abuso.
         model:
           abuse: Abuso
           subject: Asunto

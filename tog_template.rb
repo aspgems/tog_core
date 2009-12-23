@@ -67,8 +67,11 @@ end
 
 def create_bundler_gemfile
   rails_version = ask "What version of rails should this project use?"
+  # update RAILS_GEM_VERSION in environment.rb
+  gsub_file File.join('config', 'environment.rb'), /^(RAILS_GEM_VERSION = ')\d\.\d\.\d('.*)/, "\\1#{rails_version}\\2"
   puts 'Creating Gemfile...'
   file "Gemfile", %Q{
+clear_sources
 source 'http://gems.github.com'
 source 'http://gemcutter.org'
 bundle_path 'vendor/bundled_gems'
@@ -120,6 +123,11 @@ end
 def generate_acts_as_shareable_migration
   generate "share_migration"
   puts "* acts_as_shareable migration... #{"generated".green.bold}";
+end
+
+def generate_acts_as_voteable_migration
+  generate "acts_as_voteable_migration"
+  puts "* acts_as_voteable migration... #{"generated".green.bold}";
 end
 
 def generate_acts_as_abusable_migration
@@ -286,7 +294,9 @@ installation_step "Install bundler and bundle gems..." do
   puts 'Creating preinitializer...'
   file 'config/preinitializer.rb', %q{
 require File.join(RAILS_ROOT, 'vendor', 'bundled_gems', 'environment')
-
+  }
+  # extend Boot.run in config/boot.rb to work with passenger's smart mode
+  gsub_file 'config/boot.rb', /^(end)/, %Q{\\1\n\n
 class Rails::Boot
   def run
     load_initializer
@@ -363,7 +373,8 @@ installation_step "Installing plugin dependencies..." do
     'viking'            => "git://github.com/technoweenie/viking.git",
     'acts_as_shareable' => "git://github.com/molpe/acts_as_shareable.git",
     'fckeditor'         => "git://github.com/molpe/fckeditor.git",
-    'acts_as_list'      => "git://github.com/rails/acts_as_list.git"
+    'acts_as_list'      => "git://github.com/rails/acts_as_list.git",
+    'acts_as_voteable'  => "git://github.com/aspgems/acts_as_voteable.git"
   })
 
 end
@@ -375,6 +386,7 @@ installation_step "Generating dependencies migrations..." do
   generate_acts_as_taggable_migration
   generate_acts_as_scribe_migration
   generate_acts_as_shareable_migration
+  generate_acts_as_voteable_migration
 end
 
 
