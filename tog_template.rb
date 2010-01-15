@@ -88,6 +88,7 @@ gem 'RedCloth',                         '>= 4.2.0', :require_as => 'redcloth'
 gem 'mbleigh-acts-as-taggable-on',      '1.0.5',    :require_as => 'acts-as-taggable-on'
 gem 'linkingpaths-acts_as_abusable',    '0.0.2',    :require_as => 'acts_as_abusable'
 gem 'rubyist-aasm',                     '~> 2.1.1', :require_as => 'aasm'
+gem 'memcache-client',                  '1.5.0',    :require_as => 'memcache'
   }
 end
 
@@ -372,7 +373,7 @@ installation_step "Installing plugin dependencies..." do
     'paperclip'         => "git://github.com/thoughtbot/paperclip.git",
     'viking'            => "git://github.com/technoweenie/viking.git",
     'acts_as_shareable' => "git://github.com/molpe/acts_as_shareable.git",
-    'fckeditor'         => "git://github.com/molpe/fckeditor.git",
+    'easy-fckeditor'    => "git://github.com/gramos/easy-fckeditor.git",
     'acts_as_list'      => "git://github.com/rails/acts_as_list.git",
     'acts_as_voteable'  => "git://github.com/aspgems/acts_as_voteable.git"
   })

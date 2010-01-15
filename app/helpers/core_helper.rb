@@ -84,7 +84,7 @@ module CoreHelper
     end
   
   def rich_text_area(obj, field, options = {})    
-    options[:toolbarSet] ||= 'Basic'
+    options[:toolbarSet] ||= 'Easy'
     base_fck_code=fckeditor_textarea obj, field,  options
     
     options[:custom_configurations_file] ||= '/tog_core/javascripts/fck_public_config.js?1' #default config included for aspsocial editors   
@@ -93,9 +93,4 @@ module CoreHelper
     base_fck_code    
   end
   
-  def image_for_rich_text_area(obj, field)
-    link_to_function 'insert image' do |page|
-      page.alert fckeditor_element_id(obj,field)
-    end  
-  end
 end
